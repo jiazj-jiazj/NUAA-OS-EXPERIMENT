@@ -5,14 +5,14 @@
 #include<string.h>
 #include<fcntl.h>
 
-void mysys(char *  commond)
+void mysys(char *  cc)
 {
 	char  aa[105];
-	strcpy(aa,commond);
+	strcpy(aa,cc);
 	pid_t pid;
-	pid=fork();
+	pid=fork(); 
 
-	if(pid==0)
+	if(pid==0)  //子进程调用执行，父进程调用不执行 
 	{
 		char *argv[30];
 		int i=0;
@@ -28,10 +28,10 @@ void mysys(char *  commond)
 		argv[i]=NULL;
 		int error=execvp(argv[0],argv);
 		if(error<0)
-			printf("execvp error");
+			printf("error");
 		printf("\n");
 	}
-	wait(NULL);
+	wait(NULL); //如果父进程调用等待子进程 
 
 }
 
